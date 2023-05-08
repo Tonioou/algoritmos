@@ -8,12 +8,13 @@ func main() {
 	var searchQueue []string
 
 	searchQueue = graph["you"]
+	var mangoDealer string
 	for i := 0; i < len(searchQueue); i++ {
 		if isChecked(searchQueue[i], alreadyChecked) {
 			continue
 		} else {
 			if isSeller(searchQueue[i]) {
-				fmt.Printf(" %s is a Mango Dealer \n", searchQueue[i])
+				mangoDealer = searchQueue[i]
 				break
 			} else {
 				searchQueue = append(searchQueue, graph[searchQueue[i]]...)
@@ -22,6 +23,11 @@ func main() {
 		}
 	}
 
+	if mangoDealer == "" {
+		fmt.Println("There's no mango dealer")
+	} else {
+		fmt.Printf("%s is the mango dealer", mangoDealer)
+	}
 }
 
 func isChecked(name string, checked []string) bool {
