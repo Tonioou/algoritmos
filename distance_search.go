@@ -12,15 +12,15 @@ func main() {
 	for i := 0; i < len(searchQueue); i++ {
 		if isChecked(searchQueue[i], alreadyChecked) {
 			continue
-		} else {
-			if isSeller(searchQueue[i]) {
-				mangoDealer = searchQueue[i]
-				break
-			} else {
-				searchQueue = append(searchQueue, graph[searchQueue[i]]...)
-				alreadyChecked = append(alreadyChecked, searchQueue[i])
-			}
 		}
+		if isSeller(searchQueue[i]) {
+			mangoDealer = searchQueue[i]
+			break
+		} else {
+			searchQueue = append(searchQueue, graph[searchQueue[i]]...)
+			alreadyChecked = append(alreadyChecked, searchQueue[i])
+		}
+
 	}
 
 	if mangoDealer == "" {
